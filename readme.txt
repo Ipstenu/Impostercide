@@ -2,7 +2,7 @@
 Contributors: Ipstenu, skippy
 Tags: comments, spoof, imposter, multisite, wpmu
 Requires at least: 2.1
-Tested up to: 3.4
+Tested up to: 3.5
 Stable tag: 1.8
 Donate link: https://www.wepay.com/donations/halfelf-wp
 
