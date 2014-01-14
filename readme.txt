@@ -4,7 +4,7 @@ Tags: comments, spoof, imposter, multisite, wpmu
 Requires at least: 2.1
 Tested up to: 3.8
 Stable tag: 1.8
-Donate link: https://www.wepay.com/donations/halfelf-wp
+Donate link: https://store.halfelf.org/donate/
 
 Prevent unauthenticated users from using a registered users' credentials when commenting.
 
@@ -15,7 +15,7 @@ Impostercide prevents unauthenticated users from "signing" a comment with a regi
 **Misc**
 
 * [Plugin Site](http://halfelf.org/plugins/impostercide/)
-* [Donate](https://www.wepay.com/donations/halfelf-wp)
+* [Donate](https://store.halfelf.org/donate/)
 
 ==Changelog==
 
