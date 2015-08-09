@@ -2,7 +2,7 @@
 Contributors: Ipstenu, skippy
 Tags: comments, spoof, imposter, multisite, wpmu
 Requires at least: 2.1
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: 1.8
 Donate link: https://store.halfelf.org/donate/
 
@@ -19,7 +19,7 @@ Impostercide prevents unauthenticated users from "signing" a comment with a regi
 
 ==Changelog==
 
-= 1.8 = 
+= 1.8 =
 * 17 April, 2012 by Ipstenu
 * Readme cleanup, fixing URLs etc.
 * Internationalization
