@@ -1,0 +1,33 @@
+= 1.8 =
+* 17 April, 2012 by Ipstenu
+* Readme cleanup, fixing URLs etc.
+* Internationalization
+
+= 1.7 =
+* 4 October 2011 by Ipstenu
+* 3.3 compat check
+* minor cleanup
+* licencing
+
+= 1.6.2 =
+* 8 Dec 2010 by Ipstenu
+* Removed the check on URL. Why? Cause sometimes people have the same URL as other.  Like when they share a site. (Sorry RonAndAndrea!)
+
+= 1.6.1 =
+* By Ipstenu
+* Switched logged in check to is_user_logged_in() (thanks Chip!)
+* Genericized the error message (again, Chip)
+
+= 1.6 =
+* By Ipstenu
+* Re-released under GPL (per http://skippy.net/wordpress-plugins-discontinued#comment-8300 )
+* Replaced `die()` with `wp_die()`
+* Changed formatting to look 'pretty'
+
+= 1.5 =
+* July 2011 by Ipstenu
+* Initial version by Ipstenu. All I did was change commenting and move it to a subfolder. (This was only ever released on my websites)
+
+= 1.0 =
+* 2005 Scott Merrill (skippy@skippy.net), discontinued in 2007.
+* many thanks to Mark Jaquith for the name "Impostercide"
