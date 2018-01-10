@@ -36,11 +36,11 @@ This will work on WordPress from version 2.1 and up.
 
 = Will this work on MultiSite? =
 
-Again, yes.  I suggest putting it in `mu-plugins`, but it works fine both ways.
+Yes.
 
 = Can this catch innocents? =
 
-Yes, but ... well. The only person I've caught is someone who is, apparently, pathalogically incapable of remembering that he HAS an account on the site, and he needs to LOG IN with said account. He also claims to forget his password and that WordPress doesn't email it to him, so I'm pretty much chucking his complaint as a problem with the user, and not the tool.
+Any tool can, however it requires a person with an account to forget they have an account.
 
 == Screenshots ==
 1. Error message when you try and post as a registered user
