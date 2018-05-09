@@ -15,7 +15,7 @@ Impostercide prevents unauthenticated users from "signing" a comment with a regi
 **Misc**
 
 * [Plugin Site](http://halfelf.org/plugins/impostercide/)
-* [Donate](https://ko-fi.com/A236CENl/)
+* [Donate](https://ko-fi.com/A236CEN/)
 
 ==Changelog==
 
