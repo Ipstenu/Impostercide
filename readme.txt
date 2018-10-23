@@ -2,7 +2,7 @@
 Contributors: Ipstenu, skippy
 Tags: comments, spoof, imposter, multisite, wpmu
 Requires at least: 2.1
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: 2.0
 Donate link: https://ko-fi.com/A236CEN
 
