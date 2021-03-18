@@ -2,8 +2,8 @@
 Contributors: Ipstenu, skippy
 Tags: comments, spoof, imposter, multisite, wpmu
 Requires at least: 2.1
-Tested up to: 5.6
-Stable tag: 2.0
+Tested up to: 5.7
+Stable tag: 2.1
 Donate link: https://ko-fi.com/A236CEN
 
 Prevent unauthenticated users from using a registered users' credentials when commenting.
@@ -18,6 +18,10 @@ Impostercide prevents unauthenticated users from "signing" a comment with a regi
 * [Donate](https://ko-fi.com/A236CEN/)
 
 ==Changelog==
+
+= 2.1 =
+* March 2021 by Ipstenu
+* Fix bug with not working! Hello 5.7.
 
 = 2.0 =
 * March 2016 by Ipstenu
