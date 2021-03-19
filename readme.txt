@@ -1,16 +1,18 @@
 === Impostercide ===
 Contributors: Ipstenu, skippy
 Tags: comments, spoof, imposter, multisite, wpmu
-Requires at least: 2.1
+Requires at least: 5.7
 Tested up to: 5.7
-Stable tag: 2.1
+Stable tag: 3.0
 Donate link: https://ko-fi.com/A236CEN
 
 Prevent unauthenticated users from using a registered users' credentials when commenting.
 
 == Description ==
 
-Impostercide prevents unauthenticated users from "signing" a comment with a registered users email address or username.  There is no interface from the admin's end, no options to select.  Simply install, turn it on, and watch the spoofers get stopped.
+Impostercide prevents unauthenticated users from "signing" a comment with a registered users email address or username.  You can install this, turn it on, and watch the spoofers get stopped.
+
+If needed, you can customize the error messages. For WordPress multisite, this is only editable by the Network admin, and it's for the whole network.
 
 **Misc**
 
@@ -19,14 +21,9 @@ Impostercide prevents unauthenticated users from "signing" a comment with a regi
 
 ==Changelog==
 
-= 2.1 =
-* March 2021 by Ipstenu
-* Fix bug with not working! Hello 5.7.
-
-= 2.0 =
-* March 2016 by Ipstenu
-* Fixing internationalization
-* Formatting
+= 3.0 =
+* DATE YEAR by Ipstenu
+* Add settings page to allow people to customize message.
 
 == Installation ==
 
@@ -36,11 +33,15 @@ No special instructions.
 
 = Will this work on older versions of WordPress? =
 
-This will work on WordPress from version 2.1 and up.
+This will work on WordPress from version 2.1 and up, however it's no longer supported on anything before 5.7.
+
+= How do I change the message that displays? =
+
+Go to the TOOLS menu and click on 'Impostercide'. There you can customize the message.
 
 = Will this work on MultiSite? =
 
-Yes.
+Yes, but only the network admin can change the messages, and they control it for the whole network.
 
 = Can this catch innocents? =
 
