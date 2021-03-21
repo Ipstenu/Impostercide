@@ -22,8 +22,9 @@ If needed, you can customize the error messages. For WordPress multisite, this i
 ==Changelog==
 
 = 3.0 =
-* DATE YEAR by Ipstenu
+* April 2021 by Ipstenu
 * Add settings page to allow people to customize message.
+* PHPCS compat
 
 == Installation ==
 
@@ -33,7 +34,7 @@ No special instructions.
 
 = Will this work on older versions of WordPress? =
 
-This will work on WordPress from version 2.1 and up, however it's no longer supported on anything before 5.7.
+This will work on WordPress from version 2.1 and up, however it's no longer supported on anything before 5.7 due to changes in data structure.
 
 = How do I change the message that displays? =
 

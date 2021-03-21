@@ -2,7 +2,7 @@
 /*
 Plugin Name: Impostercide
 Plugin URI: http://halfelf.org/plugins/impostercide/
-Description: Impostercide prevents unauthenticated users from "signing" a comment as a registered users.
+Description: Impostercide prevents unauthenticated users from posting a comment as a registered users.
 Version: 3.0
 Author: Mika Epstein, Scott Merrill
 Author URI: http://halfelf.org/
@@ -44,7 +44,7 @@ class Impostercide {
 	public $option_defaults;
 	public $options;
 
-	// DB version, for schema upgrades. It's not being used but just in case.
+	// DB version, for schema upgrades. It's not being used, but just in case.
 	public $db_version = 1;
 
 	// Instance
@@ -93,8 +93,7 @@ class Impostercide {
 	public function admin_init() {
 
 		// Settings links
-		add_filter( 'plugin_row_meta', array( &$this, 'settings_link' ), 10, 2 );
-		add_filter( 'plugin_row_meta', array( &$this, 'donate_link' ), 10, 2 );
+		add_filter( 'plugin_row_meta', array( &$this, 'plugin_links' ), 10, 2 );
 
 		// Register Settings
 		$this->register_settings();
@@ -123,6 +122,8 @@ class Impostercide {
 	/**
 	 * Network Admin Screen Callback
 	 *
+	 * Since network admin can't use settings API, we have to do this.
+	 *
 	 * @since 3.0
 	 */
 	public function network_admin_screen() {
@@ -136,23 +137,13 @@ class Impostercide {
 
 				// This is hardcoded for a reason.
 				$output['db_version'] = $this->db_version;
-
-				// This is not currently changeable but may be later...
-				$output['error'] = $options['error'];
+				$output['error']      = $options['error'];
 
 				// Header
-				if ( $input['header'] !== $options['header'] && sanitize_text_field( $input['header'] ) === $input['header'] ) {
-					$output['header'] = sanitize_text_field( $input['header'] );
-				} else {
-					$output['header'] = $options['header'];
-				}
+				$output['header'] = ( $input['header'] !== $options['header'] ) ? sanitize_text_field( $input['header'] ) : $options['header'];
 
 				// Message
-				if ( $input['message'] !== $options['message'] && wp_kses_post( $input['message'] ) === $input['message'] ) {
-					$output['message'] = wp_kses_post( $input['message'] );
-				} else {
-					$output['message'] = $options['message'];
-				}
+				$output['message'] = ( $input['message'] !== $options['message'] ) ? wp_kses_post( $input['message'] ) : $options['message'];
 
 				$this->options = $output;
 				update_site_option( $this->option_name, $output );
@@ -264,23 +255,13 @@ class Impostercide {
 
 		// This is hardcoded for a reason.
 		$output['db_version'] = $this->db_version;
-
-		// This is not currently changeable but may be later...
-		$output['error'] = $options['error'];
+		$output['error']      = $options['error'];
 
 		// Header
-		if ( $input['header'] !== $options['header'] && sanitize_text_field( $input['header'] ) === $input['header'] ) {
-			$output['header'] = sanitize_text_field( $input['header'] );
-		} else {
-			$output['header'] = $options['header'];
-		}
+		$output['header'] = ( $input['header'] !== $options['header'] ) ? sanitize_text_field( $input['header'] ) : $options['header'];
 
 		// Message
-		if ( $input['message'] !== $options['message'] && wp_kses_post( $input['message'] ) === $input['message'] ) {
-			$output['message'] = wp_kses_post( $input['message'] );
-		} else {
-			$output['message'] = $options['message'];
-		}
+		$output['message'] = ( $input['message'] !== $options['message'] ) ? wp_kses_post( $input['message'] ) : $options['message'];
 
 		return $output;
 	}
@@ -296,7 +277,7 @@ class Impostercide {
 	public function impostercide_protect_email( $data ) {
 		global $wpdb, $user_ID, $user_login, $user_email;
 
-		extract( $data );
+		extract( $data ); // phpcs:ignore WordPress.PHP.DontExtract
 
 		if ( 'comment' !== $comment_type ) {
 			// it's not a comment, let it through
@@ -319,7 +300,7 @@ class Impostercide {
 
 		// a name was supplied, so let's check the login names
 		if ( '' !== $comment_author ) {
-			$result = $wpdb->get_var( "SELECT count(ID) FROM $wpdb->users WHERE user_login='$comment_author'" );
+			$result = $wpdb->get_var( $wpdb->prepare( "SELECT count(ID) FROM $wpdb->users WHERE user_login=%s", $comment_author ) );
 			if ( $result > 0 ) {
 				wp_die( wp_kses_post( $imposter_message ), esc_html( $imposter_error ) );
 			}
@@ -327,7 +308,7 @@ class Impostercide {
 
 		// an email was supplied, so let's see if we know about it
 		if ( '' !== $comment_author_email ) {
-			$result = $wpdb->get_var( "SELECT count(ID) FROM $wpdb->users WHERE user_email='$comment_author_email'" );
+			$result = $wpdb->get_var( $wpdb->prepare( "SELECT count(ID) FROM $wpdb->users WHERE user_login=%s", $comment_author_email ) );
 			if ( $result > 0 ) {
 				wp_die( wp_kses_post( $imposter_message ), esc_html( $imposter_error ) );
 			}
@@ -338,40 +319,31 @@ class Impostercide {
 
 
 	/**
-	 * Donate Link
+	 * Plugin Link
 	 * @param  array $links  array of links in plugin list
 	 * @param  string $file  plugin base name
 	 * @return array         New Links
 	 */
-	public function donate_link( $links, $file ) {
+	public function plugin_links( $links, $file ) {
 		if ( plugin_basename( __FILE__ ) === $file ) {
-			$donate_link = '<a href="https://ko-fi.com/A236CEN/">Donate</a>';
-			$links[]     = $donate_link;
-		}
-		return $links;
-	}
 
-	/**
-	 * Settings link
-	 *
-	 * Adds link to settings page on the plugins page
-	 *
-	 * @access public
-	 */
-	public function settings_link( $links, $file ) {
-		if ( plugin_basename( __FILE__ ) === $file ) {
-			if ( is_multisite() ) {
-				$settings_link = network_admin_url( 'settings.php?page=impostercide' );
-			} else {
-				$settings_link = admin_url( 'tools.php?page=impostercide' );
-			}
-
-			$settings_link = '<a href="' . $settings_link . '">' . __( 'Settings', 'impostercide' ) . '</a>';
+			// Generate Settings URL:
 			if ( user_can( get_current_user_id(), 'remove_users' ) ) {
-				$links[] = $settings_link;
-			}
-		}
+				if ( is_multisite() ) {
+					$settings_url = network_admin_url( 'settings.php?page=impostercide' );
+				} else {
+					$settings_url = admin_url( 'tools.php?page=impostercide' );
+				}
 
+				// Add settings link:
+				$settings = '<a href="' . $settings_url . '">' . __( 'Settings', 'impostercide' ) . '</a>';
+				$links[]  = $settings;
+			}
+
+			// Add Donate Link:
+			$donate  = '<a href="https://ko-fi.com/A236CEN/">Donate</a>';
+			$links[] = $donate;
+		}
 		return $links;
 	}
 
