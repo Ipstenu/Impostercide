@@ -1,3 +1,12 @@
+= 2.1 =
+* March 2021 by Ipstenu
+* Fix bug with not working! Hello 5.7.
+
+= 2.0 =
+* March 2016 by Ipstenu
+* Fixing internationalization
+* Formatting
+
 = 1.8 =
 * 17 April, 2012 by Ipstenu
 * Readme cleanup, fixing URLs etc.
@@ -7,7 +16,7 @@
 * 4 October 2011 by Ipstenu
 * 3.3 compat check
 * minor cleanup
-* licencing
+* licensing
 
 = 1.6.2 =
 * 8 Dec 2010 by Ipstenu
